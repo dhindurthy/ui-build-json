@@ -14,12 +14,20 @@ class AddField extends React.Component {
       ftypeValue: "",
       fvalidation: "",
       typeDropdown: {
-        label: "Feature-Type",
+        label: "Field-Type",
         options: [
           { label: "Radiobutton", value: "radiobutton" },
           { label: "Dropdown", value: "dropdown" },
           { label: "Input", value: "input" },
           { label: "Checkbox", value: "checkbox" }
+        ]
+      },
+      validationDropdown: {
+        label: "Field-Validation",
+        options: [
+          { label: "Alphanumeric", value: "Alphanumeric" },
+          { label: "Number", value: "Number" },
+          { label: "Date", value: "Date" }
         ]
       },
       showOptionUi: false,
@@ -30,6 +38,7 @@ class AddField extends React.Component {
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onValidationChange = this.onValidationChange.bind(this);
     this.onAddOption = this.onAddOption.bind(this);
+    this.hideOptionUi = this.hideOptionUi.bind(this);
     this.captureOption = this.captureOption.bind(this);
     this.deleteOption = this.deleteOption.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -51,8 +60,12 @@ class AddField extends React.Component {
     this.setState({ showOptionUi: true });
     e.preventDefault();
   }
+  hideOptionUi() {
+    this.setState({ showOptionUi: false });
+  }
   captureOption(option) {
     let options = this.state.options;
+    option.parentId = this.state.fidValue;
     options.push(option);
     this.setState({ options: options });
     let optionString = JSON.stringify(options, null, " ");
@@ -87,7 +100,7 @@ class AddField extends React.Component {
       <section>
         <form id="fieldform" onSubmit={this.onClick} onReset={this.reset}>
           <fieldset>
-            <legend>New Feature</legend>
+            <legend>New Field</legend>
             <Input
               id="fname"
               label="Name"
@@ -111,7 +124,6 @@ class AddField extends React.Component {
               field={this.state.validationDropdown}
               sendSelectedOption={this.onValidationChange.bind(this)}
             />
-            <br />
             {this.state.options.map((item, index) => (
               <div>
                 <span>{item.label} is added</span>
@@ -121,14 +133,22 @@ class AddField extends React.Component {
             <br />
             <button onClick={this.onAddOption}>Add Option</button>
             {this.state.showOptionUi && (
-              <AddOption sendOption={this.captureOption.bind(this)} />
+              <section className="option-ui">
+                <AddOption sendOption={this.captureOption.bind(this)} />
+                <button
+                  className="close"
+                  onClick={this.hideOptionUi.bind(this)}
+                >
+                  X
+                </button>
+              </section>
             )}
             <br />
             <br />
             <br />
           </fieldset>
-          <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
+          <button type="submit">Save Field</button>
+          <button type="reset">Reset Field</button>
         </form>
 
         <div className="feature-result">

@@ -12,8 +12,8 @@ class AddOption extends React.Component {
 
     this.onOnameChange = this.onOnameChange.bind(this);
     this.onOidChange = this.onOidChange.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.reset = this.reset.bind(this);
+    this.saveOption = this.saveOption.bind(this);
+    this.resetOption = this.resetOption.bind(this);
   }
 
   onOnameChange(e) {
@@ -22,7 +22,7 @@ class AddOption extends React.Component {
   onOidChange(e) {
     this.setState({ oidValue: e.target.value });
   }
-  onClick(e) {
+  saveOption(e) {
     let option = {};
     option.id = this.state.oidValue;
     option.label = this.state.onameValue;
@@ -33,11 +33,12 @@ class AddOption extends React.Component {
       oidValue: ""
     });
   }
-  reset() {
+  resetOption(e) {
     this.setState({
       onameValue: "",
       oidValue: ""
     });
+    e.preventDefault();
   }
   render() {
     return (
@@ -61,10 +62,10 @@ class AddOption extends React.Component {
             />
           </fieldset>
 
-          <button type="submit" onClick={this.onClick}>
+          <button type="submit" onClick={this.saveOption.bind(this)}>
             Save Option
           </button>
-          <button type="reset" onClick={this.reset.bind(this)}>
+          <button type="reset" onClick={this.resetOption.bind(this)}>
             Reset Option
           </button>
         </section>
