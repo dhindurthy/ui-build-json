@@ -25,9 +25,9 @@ class AddField extends React.Component {
       validationDropdown: {
         label: "Field-Validation",
         options: [
-          { label: "Alphanumeric", value: "Alphanumeric" },
-          { label: "Number", value: "Number" },
-          { label: "Date", value: "Date" }
+          { label: "Alphanumeric", value: "alphanumeric" },
+          { label: "Number", value: "number" },
+          { label: "Date", value: "date" }
         ]
       },
       showOptionUi: false,
