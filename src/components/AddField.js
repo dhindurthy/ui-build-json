@@ -10,11 +10,12 @@ class AddField extends React.Component {
     this.state = {
       feature: null,
       fnameValue: "",
+      fdescValue: "",
       fidValue: "",
       ftypeValue: "",
       fvalidation: "",
       typeDropdown: {
-        label: "Field-Type",
+        label: "Type",
         options: [
           { label: "Radiobutton", value: "radiobutton" },
           { label: "Dropdown", value: "dropdown" },
@@ -23,7 +24,7 @@ class AddField extends React.Component {
         ]
       },
       validationDropdown: {
-        label: "Field-Validation",
+        label: "Validation",
         options: [
           { label: "Alphanumeric", value: "alphanumeric" },
           { label: "Number", value: "number" },
@@ -34,6 +35,7 @@ class AddField extends React.Component {
       options: []
     };
     this.onFnameChange = this.onFnameChange.bind(this);
+    this.onFdescChange = this.onFdescChange.bind(this);
     this.onFidChange = this.onFidChange.bind(this);
     this.onTypeChange = this.onTypeChange.bind(this);
     this.onValidationChange = this.onValidationChange.bind(this);
@@ -49,6 +51,9 @@ class AddField extends React.Component {
   }
   onFidChange(e) {
     this.setState({ fidValue: e.target.value });
+  }
+  onFdescChange(e) {
+    this.setState({ fdescValue: e.target.value });
   }
   onTypeChange(option) {
     this.setState({ ftypeValue: option.value });
@@ -81,6 +86,7 @@ class AddField extends React.Component {
     featureObj.id = this.state.fidValue;
     featureObj.label = this.state.fnameValue;
     featureObj.type = this.state.ftypeValue;
+    featureObj.validation = this.state.fvalidation;
     featureObj.options = this.state.options;
     this.setState({ feature: featureObj });
     e.preventDefault();
@@ -101,35 +107,52 @@ class AddField extends React.Component {
         <form id="fieldform" onSubmit={this.onClick} onReset={this.reset}>
           <fieldset>
             <legend>New Field</legend>
-            <Input
-              id="fname"
-              label="Name"
-              type="text"
-              inputValue={this.state.fnameValue}
-              onChange={this.onFnameChange.bind(this)}
-            />
-            <Input
-              id="fid"
-              label="Id"
-              type="text"
-              inputValue={this.state.fidValue}
-              onChange={this.onFidChange.bind(this)}
-            />
-
-            <Select
-              field={this.state.typeDropdown}
-              sendSelectedOption={this.onTypeChange.bind(this)}
-            />
-            <Select
-              field={this.state.validationDropdown}
-              sendSelectedOption={this.onValidationChange.bind(this)}
-            />
-            {this.state.options.map((item, index) => (
-              <div>
-                <span>{item.label} is added</span>
-                <button onClick={this.deleteOption.bind(index)}>Delete</button>
-              </div>
-            ))}
+            <section className="properties">
+              <Input
+                id="fname"
+                label="Name"
+                type="text"
+                inputValue={this.state.fnameValue}
+                onChange={this.onFnameChange.bind(this)}
+              />
+              <Input
+                id="fid"
+                label="Id"
+                type="text"
+                inputValue={this.state.fidValue}
+                onChange={this.onFidChange.bind(this)}
+              />
+              <Input
+                id="fdesc"
+                label="Description"
+                type="text"
+                inputValue={this.state.fdescValue}
+                onChange={this.onFdescChange.bind(this)}
+              />
+            </section>
+            <section className="properties">
+              <Select
+                field={this.state.typeDropdown}
+                sendSelectedOption={this.onTypeChange.bind(this)}
+              />
+              <Select
+                field={this.state.validationDropdown}
+                sendSelectedOption={this.onValidationChange.bind(this)}
+              />
+            </section>
+            <section className="added-options">
+              {this.state.options.map((item, index) => (
+                <div className="added-option">
+                  <span>{item.label} is added</span>
+                  <button
+                    className="close"
+                    onClick={this.deleteOption.bind(index)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </section>
             <br />
             <button onClick={this.onAddOption}>Add Option</button>
             {this.state.showOptionUi && (
