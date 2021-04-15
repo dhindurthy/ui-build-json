@@ -48,7 +48,7 @@ class AddOption extends React.Component {
             <legend>New Option {this.state.onameValue}</legend>
             <Input
               id="oname"
-              label="Option Name"
+              label="Option Label"
               type="text"
               inputValue={this.state.onameValue}
               onChange={this.onOnameChange.bind(this)}

@@ -27,7 +27,10 @@ class Select extends React.Component {
     return (
       <section className="field">
         <label>{this.props.field.label}</label>
-        <select onChange={this._changeOption.bind(this)}>
+        <select
+          onChange={this._changeOption.bind(this)}
+          value={this.props.value}
+        >
           <option value="">Select</option>
           {this.props.field.options.map((item, index) => (
             <option key={item.label} value={item.value}>

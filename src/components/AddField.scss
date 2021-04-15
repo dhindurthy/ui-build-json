@@ -1,7 +1,70 @@
+.block-button {
+  width: 100%;
+  height: 5rem;
+}
+hr {
+  width: 100%;
+}
+.view-screen{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid gray;
+  width: 85%;
+}
+.view-screen{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid gray;
+  width: 85%;
+  padding: 2rem;
+}
+.edit-screen{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: 1px solid gray;
+  width: 85%;
+  padding: 2rem;
+}
+.main-screen {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fields-edit-ui{
+  margin-bottom: 2rem;
+}
+.added-fields{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.field-ui{
+  margin-bottom: 2rem;
+}
+.append-fields{
+}
+.add {
+  display: block;
+  width: 80%;
+}
+.new-add {
+  display: block;
+}
 fieldset {
   display: flex;
   flex-direction: column;
+  
+  padding-right: 8rem;
   align-items: flex-start;
+}
+.field-section {
+  display: flex;
+  margin-bottom: 2rem;
 }
 
 .properties {
@@ -10,10 +73,23 @@ fieldset {
 }
 .added-options {
   display: flex;
-  .added-option {
-    margin-right: 1rem;
-    text-decoration: underline;
-  }
+  padding-left: 0;
+}
+.added-option-details{
+  text-align: left;
+  padding-left: 0;
+  list-style: none;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+.added-option-details-view {
+  text-align: left;
+  padding-left: 0;
+  list-style: none;
+  padding: 0.5rem;
+}
+#fieldform {
+  
 }
 .field {
 text-align: left;
@@ -41,14 +117,19 @@ label {
 
 .option-ui{
   display: flex;
+  margin-right: 1rem;
 }
 
 .close{
-  height: 2rem;
+  height: 1.375rem;
   border-radius: 1rem;
   border-style: none;
   border-color: black;
   color: black;
   background: white;
   cursor: pointer;
+}
+.field-box{
+  border: 1px solid black;
+  padding: 2rem;
 }
